@@ -1,0 +1,29 @@
+body {
+  background-color: black;
+  margin: 0;
+  overflow: hidden;
+}
+
+input#cp {
+  position: absolute;
+  left: 4px;
+  bottom: 4px;
+
+  border: none;
+  background: none;
+  padding: 0;
+  width: 16px;
+  height: 20px;
+}
+
+div#dot {
+  position: absolute;
+  left: -32px;
+  top: -32px;
+
+  height: 4px;
+  width: 4px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50%;
+  pointer-events: none;
+}
