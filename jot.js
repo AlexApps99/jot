@@ -24,11 +24,11 @@ function oSmaller(x, y) {
 }
 
 function modeOfDrawing(e) {
-  if (e.buttons === 1) {
-    cp.onchange();
-    return true;
-  } else if (e.buttons === 2) {
+  if ((e.buttons & 2) === 2) {
     ctx.strokeStyle = "black";
+    return true;
+  } else if ((e.buttons & 1) === 1) {
+    cp.onchange();
     return true;
   } else {
     return false;
@@ -63,6 +63,10 @@ canvas.onmousedown = e => {
     last_event = null;
     return;
   }
+
+  let im = ctx.getImageData(0, 0, canvas.width, canvas.height);
+  octx.putImageData(im, 0, 0);
+
   ctx.beginPath();
   ctx.moveTo(e.offsetX, e.offsetY);
   ctx.lineTo(e.offsetX, e.offsetY);
@@ -114,6 +118,9 @@ document.onkeydown = e => {
     document.body.removeChild(link);
     e.preventDefault();
     return false;
+  } else if (e.ctrlKey && e.key === "z") {
+    let im = octx.getImageData(0, 0, canvas.width, canvas.height);
+    ctx.putImageData(im, 0, 0);
   }
 };
 
