@@ -108,6 +108,21 @@ canvas.onwheel = e => {
   }
 };
 
+// TODO overflow behavior kinda weird
+// TODO allow placement at cursor
+canvas.ondrop = e => {
+  if (e.dataTransfer.files.length == 1 && e.dataTransfer.files[0].type.startsWith("image/")) {
+    e.preventDefault();
+    createImageBitmap(e.dataTransfer.files[0]).then(i => {
+      ctx.drawImage(i, 0, 0);
+    });
+  }
+};
+
+canvas.ondragover = e => {
+  e.preventDefault();
+};
+
 document.onkeydown = e => {
   if (e.ctrlKey && e.key === "s") {
     let link = document.createElement("a");
