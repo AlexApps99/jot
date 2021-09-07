@@ -100,7 +100,7 @@ canvas.onmouseup = e => {
 
 canvas.onwheel = e => {
   if (e.deltaMode == e.DOM_DELTA_PIXEL) {
-    ctx.lineWidth -= 0.1 * e.deltaY;
+    ctx.lineWidth -= Math.round(e.deltaY / 10);
     dot.style.width = ctx.lineWidth.toString() + "px";
     dot.style.height = ctx.lineWidth.toString() + "px";
     dot.style.left = (e.clientX - dot.offsetWidth / 2).toString() + "px";
